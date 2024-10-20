@@ -1,13 +1,11 @@
-# main1.py
 import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
-from conexao import criar_sessao  # Importa a função para criar a sessão
+from conexao import criar_sessao  
 from pagina import Ui_Dialog
 
-# Definição do modelo Cliente
 Base = declarative_base()
 
 class Cliente(Base):
@@ -50,7 +48,7 @@ class MainApp(QtWidgets.QDialog, Ui_Dialog):
         novo_cliente = Cliente(nome=nome, email=email)
         self.session.add(novo_cliente)
         self.session.commit()
-        self.load_clientes()  # Atualiza a lista
+        self.load_clientes()  
 
     def atualizar_cliente(self):
         id_cliente = self.lineEdit_3.text()
@@ -59,7 +57,7 @@ class MainApp(QtWidgets.QDialog, Ui_Dialog):
             cliente.nome = self.lineEdit.text()
             cliente.email = self.lineEdit_2.text()
             self.session.commit()
-            self.load_clientes()  # Atualiza a lista
+            self.load_clientes()  
 
     def deletar_cliente(self):
         id_cliente = self.lineEdit_3.text()
@@ -67,7 +65,7 @@ class MainApp(QtWidgets.QDialog, Ui_Dialog):
         if cliente:
             self.session.delete(cliente)
             self.session.commit()
-            self.load_clientes()  # Atualiza a lista
+            self.load_clientes() 
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
